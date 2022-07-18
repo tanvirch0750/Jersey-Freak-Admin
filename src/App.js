@@ -12,29 +12,32 @@ import './style/dark.scss';
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
+  const user = JSON.parse(localStorage.getItem('persist:root'))?.user;
+  const currentUser = user && JSON.parse(user).currentUser;
+  const userAdmin = currentUser?.isAdmin;
+
   return (
     <div className={darkMode ? 'app dark' : 'app'}>
       <Routes>
-        <Route path="/">
-          <Route index element={<Home />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="users">
-            <Route index element={<List />}></Route>
-            <Route path=":userId" element={<Single />}></Route>
+        {userAdmin && (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/users" element={<List />} />
+            <Route path="/users/:userId" element={<Single />}></Route>
             <Route
-              path="new"
+              path="/users/new"
               element={<New inputs={userInputs} title="Add New User" />}
             ></Route>
-          </Route>
-          <Route path="products">
-            <Route index element={<List />}></Route>
-            <Route path=":productId" element={<Single />}></Route>
+            <Route path="/products" element={<List />}></Route>
+            <Route path="/products/:productId" element={<Single />}></Route>
             <Route
-              path="new"
+              path="/products/new"
               element={<New inputs={productInputs} title="Add New Product" />}
             ></Route>
-          </Route>
-        </Route>
+          </>
+        )}
+
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
     </div>
   );

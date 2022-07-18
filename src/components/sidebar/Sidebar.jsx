@@ -11,12 +11,22 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import SettingsSystemDaydreamOutlinedIcon from '@mui/icons-material/SettingsSystemDaydreamOutlined';
 import StoreIcon from '@mui/icons-material/Store';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { DarkModeContext } from '../../context/darkModeContext';
+import { logout } from '../../redux/userRedux';
 import './Sidebar.scss';
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const reduxDispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logOutUser = () => {
+    reduxDispatch(logout());
+    navigate('/login');
+  };
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -85,7 +95,7 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon classnName="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li onClick={logOutUser}>
             <ExitToAppIcon classnName="icon" />
             <span>Logout</span>
           </li>
