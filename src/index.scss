@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #994ff3;
+  --secondary-color: #ff5470;
+  --tertiary-color: #fde24f;
+  --heading-color: #00214d;
+  --button-text: #00214d;
+  --text-color: #1b2d45;
+  --color-white: #fffffe;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+  fill: var(--primary-color);
+}

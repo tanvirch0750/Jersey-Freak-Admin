@@ -1,0 +1,63 @@
+.widget {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 10px;
+  height: 150px;
+
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      font-size: 700;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: gray;
+    }
+
+    .counter {
+      font-size: 28px;
+      font-weight: 300;
+    }
+
+    .link {
+      width: max-content;
+      font-size: 12px;
+      border-bottom: 1px solid gray;
+      cursor: pointer;
+    }
+
+    .percentage {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      &.positive {
+        color: green;
+      }
+
+      &.negetive {
+        color: red;
+      }
+    }
+
+    .icon {
+      align-self: flex-end;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .css-i4bv87-MuiSvgIcon-root {
+        font-size: 32px;
+        padding: 5px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
