@@ -9,7 +9,7 @@ import {
 
 import './Chart.scss';
 
-const data = [
+const dataChart = [
   { name: 'January', Total: 1200 },
   { name: 'February', Total: 2100 },
   { name: 'March', Total: 800 },
@@ -18,7 +18,7 @@ const data = [
   { name: 'June', Total: 1700 },
 ];
 
-const Chart = ({ aspect, title }) => {
+const Chart = ({ aspect, title, data }) => {
   return (
     <div className="chart">
       <div className="title">{title}</div>
@@ -26,7 +26,7 @@ const Chart = ({ aspect, title }) => {
         <AreaChart
           width={730}
           height={250}
-          data={data}
+          data={dataChart}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
           <defs>
