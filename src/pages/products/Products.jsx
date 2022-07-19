@@ -47,7 +47,7 @@ const Products = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={'/product/' + params.row._id}>
+            <Link to={'/products/' + params.row._id}>
               <button className="productListEdit">Edit</button>
             </Link>
             <span
