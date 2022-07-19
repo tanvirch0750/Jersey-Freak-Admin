@@ -1,11 +1,38 @@
-import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
+import { addProduct } from '../../redux/apiCalls';
 import './New.scss';
 
 const New = ({ inputs, title }) => {
-  const [file, setFile] = useState('');
+  const [input, setInput] = useState({});
+  const [cat, setCat] = useState([]);
+  const [size, setSize] = useState([]);
+  const dispatch = useDispatch();
+
+ 
+
+  const handleChange = (e) => {
+    setInput((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleCat = (e) => {
+    setCat(e.target.value.split(','));
+  };
+
+  const handleSize = (e) => {
+    setSize(e.target.value.split(','));
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const product = { ...input, categories: cat, size: size };
+    console.log(product);
+    addProduct(product, dispatch);
+  };
 
   return (
     <div className="new">
@@ -16,37 +43,52 @@ const New = ({ inputs, title }) => {
           <h1>{title}</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
-              }
-              alt=""
-            />
-          </div>
           <div className="right">
             <form>
-              <div className="formInput">
-                <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: 'none' }}
-                />
-              </div>
-
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
+                  <input
+                    name={input.name}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                    onChange={handleChange}
+                  />
                 </div>
               ))}
-              <button>Send</button>
+              <div className="formInput">
+                <label>Category</label>
+                <input
+                  type="text"
+                  placeholder="category"
+                  onChange={handleCat}
+                />
+              </div>
+              <div className="formInput">
+                <label>Club Name</label>
+                <input
+                  type="text"
+                  placeholder="Club Name"
+                  onChange={handleChange}
+                  name="club"
+                />
+              </div>
+              <div className="formInput">
+                <label>Size</label>
+                <input
+                  type="text"
+                  placeholder="Jersey Sizes (M, XL)"
+                  onChange={handleSize}
+                />
+              </div>
+              <div className="formInput">
+                <label htmlFor="Stock">Stock</label>
+                <select name="inStock" onChange={handleChange}>
+                  <option value="true">Yes</option>
+                  <option value="false">False</option>
+                </select>
+              </div>
+              <button onClick={handleClick}>Add Product</button>
             </form>
           </div>
         </div>

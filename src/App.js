@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { DarkModeContext } from './context/darkModeContext';
-import { productInputs, userInputs } from './formSource';
+import { productInputs } from './formSource';
 import Home from './pages/home/Home';
 import List from './pages/list/List';
 import Login from './pages/login/Login';
@@ -26,10 +26,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<List />} />
             <Route path="/users/:userId" element={<Single />}></Route>
-            <Route
-              path="/users/new"
+            {/* <Route
+              path="/product/new"
               element={<New inputs={userInputs} title="Add New User" />}
-            ></Route>
+            ></Route> */}
             <Route path="/products" element={<Products />}></Route>
             <Route path="/products/:productId" element={<Product />}></Route>
             <Route
