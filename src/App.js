@@ -6,6 +6,7 @@ import Home from './pages/home/Home';
 import List from './pages/list/List';
 import Login from './pages/login/Login';
 import New from './pages/new/New';
+import Products from './pages/products/Products';
 import Single from './pages/single/Single';
 import './style/dark.scss';
 
@@ -28,7 +29,7 @@ function App() {
               path="/users/new"
               element={<New inputs={userInputs} title="Add New User" />}
             ></Route>
-            <Route path="/products" element={<List />}></Route>
+            <Route path="/products" element={<Products />}></Route>
             <Route path="/products/:productId" element={<Single />}></Route>
             <Route
               path="/products/new"
